@@ -11,7 +11,10 @@ const {
   bookingAvailabilityController,
   userAppointmentsController,
   updatePasswordController,
+  resetPassword,
+  requestPasswordReset,
 } = require("../controllers/userCtrl");
+const forgetpassCtrl = require("../controllers/forgetpassCtrl");
 const authMiddleware = require("../middlewares/authMiddleware");
 
 //router onject
@@ -59,7 +62,16 @@ router.post(
   bookingAvailabilityController
 );
 
+
 //Appointments List
 router.get("/user-appointments", authMiddleware, userAppointmentsController);
+
+router.post(
+  "/password-recovery",forgetpassCtrl.requestPasswordReset
+  
+);
+router.post(
+  "/password-recovery/:token",forgetpassCtrl.resetPassword
+);
 
 module.exports = router;
