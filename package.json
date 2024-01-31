@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test jest --verbose --runInBand --watchAll",
-    "start": "cross-env NODE_ENV=production node index.js",
+    "start": "set HTTPS=true&& set SSL_CRT_FILE=localhost.crt&& set SSL_KEY_FILE=localhost.key&& react-scripts start",
     "dev": "cross-env NODE_ENV=development nodemon index.js",
     "coverage": "cross-env NODE_ENV=test jest --verbose --coverage --runInBand"
   },
@@ -19,6 +19,8 @@
     "cross-env": "^7.0.3",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "https": "^1.0.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.3",
     "mongoose": "^6.7.2",
