@@ -4,7 +4,9 @@ const moragan = require("morgan");
 const dotenv = require("dotenv");
 const connectDB = require("./config/db");
 const morgan = require('morgan');
-const userAuditLogger = require('./middlewares/userAuditLogger'); // Update the path accordingly
+const userAuditLogger = require('./middlewares/userAuditLogger');
+const https = require('https');
+const fs = require('fs'); // Update the path accordingly
 
 //rest obejct
 const app = express();
@@ -34,11 +36,15 @@ app.use("/api/v1/doctor", require("./routes/doctorRoutes"));
 //port
 const port = process.env.PORT || 8001;
 //listen port
-app.listen(port, () => {
-  console.log(
-    `Server Running in ${process.env.NODE_MODE} Mode on port ${process.env.PORT}`
-  );
-});
+// app.listen(port, () => {
+//   console.log(
+//     `Server Running in ${process.env.NODE_MODE} Mode on port ${process.env.PORT}`
+//   );
+// });
+https.createServer({
+  cert: fs.readFileSync('./localhost.crt'),
+  key: fs.readFileSync('./localhost.key')
+},app ).listen(8001);
 
 module.exports = app;
 
