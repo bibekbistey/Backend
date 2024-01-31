@@ -120,52 +120,6 @@ const loginController = async (req, res) => {
 
 
 
-// const loginController = async (req, res) => {
-//   try {
-//     const user = await userModel.findOne({ email: req.body.email });
-
-//     if (!user) {
-//       return res.status(200).send({ message: "User not found", success: false });
-//     }
-
-//     if (user.accountLocked) {
-//       return res.status(200).send({ message: "Account locked", success: false });
-//     }
-
-//     const isMatch = await bcrypt.compare(req.body.password, user.password);
-
-//     if (!isMatch) {
-//       // Update failed login attempts and last attempt timestamp
-//       user.failedLoginAttempts += 1;
-//       user.lastFailedLoginAttempt = new Date();
-//       await user.save();
-
-//       // Check if the account should be locked
-//       if (user.failedLoginAttempts >= MAX_FAILED_ATTEMPTS) {
-//         user.accountLocked = true;
-//         await user.save();
-//         return res.status(200).send({ message: "Account locked", success: false });
-//       }
-
-//       return res.status(200).send({ message: "Invalid Email or Password", success: false });
-//     }
-
-//     // Reset failed login attempts on successful login
-//     user.failedLoginAttempts = 0;
-//     user.lastFailedLoginAttempt = null;
-//     await user.save();
-
-//     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-//       expiresIn: "3d",
-//     });
-
-//     res.status(200).send({ message: "Login Success", success: true, token, data: user });
-//   } catch (error) {
-//     console.log(error);
-//     res.status(500).send({ message: `Error in Login CTRL ${error.message}` });
-//   }
-// };
-
 
 
 // update passowrd
